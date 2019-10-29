@@ -5,7 +5,7 @@ package com.learning.pattern.factory.method;
  * @date: 2019-10-28 21:50
  * @description:工厂方法主测试类
  */
-public class MethodFactoryMain {
+public class MethodFactoryMainTest {
 
     /**
      * 工厂方法模式 将具体创建对象的过程下沉到具体的子类中去

@@ -5,7 +5,7 @@ package com.learning.pattern.factory.simple;
  * @date: 2019-10-28 21:42
  * @description: 简单工厂模式主测试类
  */
-public class SimpleFactoryMain {
+public class SimpleFactoryMainTest {
 
     public static void main(String[] args) {
         CreateCarFactory.createCar(3);
