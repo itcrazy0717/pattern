@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import com.learning.pattern.singleton.hunger.HungrySingleton;
 import com.learning.pattern.singleton.lazy.IocSingleton;
 import com.learning.pattern.singleton.lazy.LazyDoubleCheckSingleton;
+import com.learning.pattern.singleton.lazy.LazySingleSerializable;
 import com.learning.pattern.singleton.lazy.LazyEnumSingleton;
 import com.learning.pattern.singleton.lazy.LazyInnerClassSingleton;
-import com.learning.pattern.singleton.lazy.LazyEnumSingleSerializable;
 import com.learning.pattern.singleton.lazy.LazyThreadLocalSingleton;
 
 /**
@@ -39,8 +39,8 @@ public class SingletonMainTest {
      */
     @Test
     public void lazySingletonTest() {
-        Thread t1 = new Thread(() -> System.out.println("懒汉式单例测试（直接使用synchronized）,hashCode=" + LazyEnumSingleSerializable.getInstance().hashCode()));
-        Thread t2 = new Thread(() -> System.out.println("懒汉式单例测试（直接使用synchronized）,hashCode=" + LazyEnumSingleSerializable.getInstance().hashCode()));
+        Thread t1 = new Thread(() -> System.out.println("懒汉式单例测试（直接使用synchronized）,hashCode=" + LazySingleSerializable.getInstance().hashCode()));
+        Thread t2 = new Thread(() -> System.out.println("懒汉式单例测试（直接使用synchronized）,hashCode=" + LazySingleSerializable.getInstance().hashCode()));
         t1.start();
         t2.start();
     }

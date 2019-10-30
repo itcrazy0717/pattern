@@ -7,11 +7,11 @@ import java.io.Serializable;
  * @date: 2019-10-29 21:34
  * @description: 懒汉式单例 直接使用synchronized 为了演示序列化破坏单例，这里必须实现Serializable
  */
-public class LazyEnumSingleSerializable implements Serializable {
+public class LazySingleSerializable implements Serializable {
 
-    private static LazyEnumSingleSerializable instance = null;
+    private static LazySingleSerializable instance = null;
 
-    private LazyEnumSingleSerializable() {}
+    private LazySingleSerializable() {}
 
     /**
      * 直接在方法上加synchronized当然可以实现单例的安全，但是这种方式对性能影响较大，特别在竞争激烈的情况下，争抢锁
@@ -19,9 +19,9 @@ public class LazyEnumSingleSerializable implements Serializable {
      *
      * @return
      */
-    public static synchronized LazyEnumSingleSerializable getInstance() {
+    public static synchronized LazySingleSerializable getInstance() {
         if (instance == null) {
-            instance = new LazyEnumSingleSerializable();
+            instance = new LazySingleSerializable();
         }
         return instance;
     }
