@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/.idea/
+/com/learning/pattern/proxy/dynamicproxy/cglib/Bike$$EnhancerByCGLIB$$8e9999a8$$FastClassByCGLIB$$e0806e1e.class
