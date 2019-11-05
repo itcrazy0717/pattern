@@ -15,7 +15,7 @@ public abstract class WashClothes {
      * 第四步：衣服洗好后晾晒
      */
 
-    public void washClothes() {
+    public final void washClothes() {
         this.collectClothes();
 
         this.putInWashingMachine();

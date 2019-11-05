@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class IocSingleton {
 
-    private static Map<String, Object> map = new ConcurrentHashMap<>();
+    private static volatile Map<String, Object> map = new ConcurrentHashMap<>();
 
     private IocSingleton() {}
 

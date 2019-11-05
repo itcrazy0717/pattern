@@ -1,5 +1,7 @@
 package com.learning.pattern.singleton;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -100,14 +102,14 @@ public class SingletonMainTest {
      */
     @Test
     public void breakSingletonTestByReflect() throws Exception {
-        Class<?> clazz = LazyEnumSingleton.class;
-        Constructor<?> constructor = clazz.getDeclaredConstructor(String.class, int.class);
+        Class<?> clazz = LazyDoubleCheckSingleton.class;
+        Constructor<?> constructor = clazz.getDeclaredConstructor(null);
         constructor.setAccessible(true);
         // 在newInstance的时候会调用一次构造函数，从而生成两个不一样的对象，破坏单例
         // 枚举形式的单例是不允许进行反射的，从jdk内部进行了阻止
         // 其他形式的单例，可以通过在私有构造函数中判断对象，抛出异常的方式来进行阻止
-        Object instance = constructor.newInstance("test", 11);
-        LazyEnumSingleton instance1 = LazyEnumSingleton.getInstance();
+        Object instance1 = LazyDoubleCheckSingleton.getInstance();
+        Object instance = constructor.newInstance();
         System.out.println("反射单例，hashCode=" + instance.hashCode());
         System.out.println("直接使用getInstance方法，hashCode=" + instance1.hashCode());
         System.out.println(instance1 == instance);
@@ -120,14 +122,14 @@ public class SingletonMainTest {
     public void breakSingletonTestBySerialable() {
         LazyEnumSingleton lazySingeton1 = null;
         LazyEnumSingleton lazySingeton2 = LazyEnumSingleton.getInstance();
-        try (FileOutputStream fos = new FileOutputStream("LazySington.dat")) {
-            // 写文件
+        try (ByteArrayOutputStream fos = new ByteArrayOutputStream()) {
+            // 将类写入流中
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(lazySingeton2);
             oos.flush();
             oos.close();
 
-            FileInputStream fis = new FileInputStream("LazySington.dat");
+            ByteArrayInputStream fis = new ByteArrayInputStream(fos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(fis);
             // 从流中读取对象进行实例化时，同样会再次生产新的对象，从而破坏单例
             // 枚举除外枚举是通过类和类名进行的初始化，在虚拟机内部只会保证一个对象

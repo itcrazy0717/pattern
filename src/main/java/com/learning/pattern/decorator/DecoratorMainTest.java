@@ -23,7 +23,6 @@ public class DecoratorMainTest {
         // 再加一份牛奶
         coffee = new MilkCoffeeDecorator(coffee);
 
-
         System.out.println("咖啡信息：" + coffee.getMsg() + " 价格：" + coffee.getPrice());
     }
 }
